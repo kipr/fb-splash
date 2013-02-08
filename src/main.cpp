@@ -44,9 +44,9 @@ int main(int argc, char *argv[])
 	const unsigned long imagesize = ftell(image);
 	unsigned char *buffer = new unsigned char[imagesize];
 	
-	close(image);
+	fclose(image);
 	
-	const unsigned long screensize = ret->vinfo.xres * ret->vinfo.yres * ret->vinfo.bits_per_pixel / 8;
+	const unsigned long screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
 	unsigned char *display = (unsigned char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 	for(;;) {
 		memcpy(display, buffer, std::min(screensize, imagesize));
