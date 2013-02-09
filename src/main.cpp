@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 	fseek(image, 0, SEEK_END);
 	const unsigned long imagesize = ftell(image);
 	unsigned char *buffer = new unsigned char[imagesize];
-	
+	fread(buffer, imagesize, 1, image);
 	fclose(image);
 	
 	const unsigned long screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
