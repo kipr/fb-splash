@@ -48,10 +48,7 @@ int main(int argc, char *argv[])
 	
 	const unsigned long screensize = vinfo.xres * vinfo.yres * vinfo.bits_per_pixel / 8;
 	unsigned char *display = (unsigned char *)mmap(0, screensize, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-	for(;;) {
-		memcpy(display, buffer, std::min(screensize, imagesize));
-		usleep(50000); // 20 FPS
-	}
+	memcpy(display, buffer, std::min(screensize, imagesize));
 	
 	munmap(display, screensize);
 	close(fd);
