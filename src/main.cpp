@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
 	fseek(image, 0, SEEK_END);
 	const unsigned long imagesize = ftell(image);
 	unsigned char *buffer = new unsigned char[imagesize];
+	fseek(image, 0, SEEK_SET);
 	if(fread(buffer, 1, imagesize, image) < 0) {
 		perror("fread");
 		return EXIT_FAILURE;
